@@ -27,7 +27,7 @@ class FetchDemo extends React.Component {
     this.state.subreddit = x;
 
     // Remove the 'www.' to cause a CORS error (and see the error state)
-    axios.get(`http://www.reddit.com/r/`+x+`.json`)
+    axios.get(`https://www.reddit.com/r/`+x+`.json`)
       .then(res => {
         // Transform the raw data by extracting the nested posts
         console.log(res);
