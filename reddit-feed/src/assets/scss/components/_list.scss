@@ -6,6 +6,8 @@
 
 /* List */
 
+
+
 	ol {
 		list-style: decimal;
 		margin: 0 0 _size(element-margin) 0;
@@ -16,13 +18,36 @@
 		}
 	}
 
-	ul {
-		list-style: disc;
+	.results-list {
+		list-style: none;
 		margin: 0 0 _size(element-margin) 0;
 		padding-left: 1em;
 
-		li {
+		.reddit-tile {
+			margin: 10px;
 			padding-left: 0.5em;
+			display: flex;
+			background-color: rgba(255, 255, 255, 0.2);
+
+			.tile-title {
+				float: left;
+				width: 350px;
+				display: flex;
+				flex-flow: column;
+
+				a {
+					margin-top: auto;
+				}
+			}
+
+			.tile-content {
+				margin: 10px;
+				ul {
+					li {
+						background-color: rgba(255, 255, 255, 0.0);
+				}
+			}
+			}
 		}
 
 		&.alt {

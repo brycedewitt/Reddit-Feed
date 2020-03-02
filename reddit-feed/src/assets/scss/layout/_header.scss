@@ -280,3 +280,21 @@
     }
   }
 }
+
+
+#work {
+  h2 {
+    margin-bottom: 0.8rem;
+  }
+
+  #pub-query-search {
+    margin-top: 1rem;
+  }
+}
+
+#results-container {
+  .results-list {
+    list-style: none;
+    margin-top: 2em;
+  }
+}
