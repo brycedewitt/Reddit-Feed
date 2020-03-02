@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Hunter Chang",
   "dependencies": {
+    "auth0-js": "^9.12.2",
     "axios": "^0.19.2",
     "gatsby": "^2.19.5",
     "gatsby-plugin-manifest": "^2.2.38",

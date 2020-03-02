@@ -22,12 +22,12 @@ class FetchDemo extends React.Component {
   componentDidMount() {
   }
 
-  updateFeed(x) {
-    console.log("Making update request to: http://www.reddit.com/r/", x, ".json");
+  updateFeed(x, y) {
+    console.log("Making update request to: https://www.reddit.com/r/", x, "/", y, ".json");
     this.state.subreddit = x;
 
     // Remove the 'www.' to cause a CORS error (and see the error state)
-    axios.get(`https://www.reddit.com/r/`+x+`.json`)
+    axios.get(`https://www.reddit.com/r/`+x+"/"+y+`.json`)
       .then(res => {
         // Transform the raw data by extracting the nested posts
         console.log(res);
@@ -85,7 +85,7 @@ class FetchDemo extends React.Component {
     }
 
     return (
-      <ul>
+      <ul className="results-list">
         {this.state.posts.map(post =>
           <RedditTile content={post}/>
         )}
@@ -101,9 +101,6 @@ class FetchDemo extends React.Component {
     return (
       <div>
         <h1>{title}</h1>
-        <span className="image main">
-          <img src="" alt="" />
-        </span>
         {this.renderPosts()}
       </div>
     );

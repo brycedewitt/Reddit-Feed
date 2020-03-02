@@ -25,6 +25,14 @@ class RedditTile extends React.Component {
     );
   }
 
+  ifImage() {
+    if (this.props.content.thumbnail) {
+      return (
+        <li><img src={this.props.content.thumbnail}/></li>
+      );
+    }
+  }
+
   renderPost() {
     if(this.state.error) {
       return this.renderError();
@@ -33,13 +41,18 @@ class RedditTile extends React.Component {
 
     return (
       <li key={this.props.content.id} class="reddit-tile">
+      <div className="tile-title">
       <h3>{this.props.content.title}</h3>
+      <a href={"https://www.reddit.com" + this.props.content.permalink}>View Post</a>
+      </div>
+      <div className="tile-content">
         <ul>
-        <li><img src={this.props.content.thumbnail}/></li>
-        <li>Author: {this.props.content.author}</li>
-        <li>Score: {this.props.content.score}</li>
-        <li>Comments: {this.props.content.num_comments}</li>
+        {this.ifImage()}
+        <li><b>Author</b>: {this.props.content.author}</li>
+        <li><b>Score</b>: {this.props.content.score}</li>
+        <li><b>Comments</b>: {this.props.content.num_comments}</li>
         </ul>
+        </div>
       </li>
     );
   }

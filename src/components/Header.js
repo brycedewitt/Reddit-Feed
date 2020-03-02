@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import { login, isAuthenticated, getProfile } from "../utils/auth"
+
+
 
 const Header = props => (
   <header id="header" style={props.timeout ? { display: 'none' } : {}}>
@@ -10,7 +13,7 @@ const Header = props => (
       <div className="inner">
         <h1>Reddit-Feed</h1>
         <p>
-          A minimal interpretation of the Reddit API using Gatsby + Netlify.
+          A minimal static webpage for querying the Reddit API using Gatsby + axios.
         </p>
       </div>
     </div>
@@ -22,7 +25,7 @@ const Header = props => (
               props.onOpenArticle('intro')
             }}
           >
-            Info
+            About
           </button>
         </li>
         <li>
@@ -45,9 +48,7 @@ const Header = props => (
         </li>
         <li>
           <button
-            onClick={() => {
-              props.onOpenArticle('contact')
-            }}
+            onClick={() => login()}
           >
             Login
           </button>
