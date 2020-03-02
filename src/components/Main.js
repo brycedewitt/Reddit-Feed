@@ -125,7 +125,7 @@ class Main extends React.Component {
           }`}
           style={{ display: 'none' }}
         >
-          <h2 className="major">{() => getProfile()}</h2>
+          <h2 className="major">{}</h2>
           <span className="image main">
             <img src={pic03} alt="" />
           </span>
