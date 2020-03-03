@@ -1,6 +1,7 @@
 import auth0 from "auth0-js"
 import { navigate } from "gatsby"
 
+
 const isBrowser = typeof window !== "undefined"
 
 const auth = isBrowser
@@ -38,11 +39,16 @@ const auth = isBrowser
   }
 
   const setSession = (cb = () => {}) => (err, authResult) => {
+    console.log("in set session");
+
     if (err) {
+      console.log("error in set session");
+      console.log(err);
       navigate("/")
       cb()
       return
     }
+    console.log(authResult);
 
     if (authResult && authResult.accessToken && authResult.idToken) {
       let expiresAt = authResult.expiresIn * 1000 + new Date().getTime()
@@ -57,7 +63,9 @@ const auth = isBrowser
   }
 
   export const handleAuthentication = () => {
+    console.log("handling authentication");
     if (!isBrowser) {
+      console.log("not a browser");
       return;
     }
 
@@ -67,3 +75,13 @@ const auth = isBrowser
   export const getProfile = () => {
     return user
   }
+
+  export const silentAuth = callback => {
+    if (!isAuthenticated()) return callback()
+    auth.checkSession({}, setSession(callback))
+  }
+
+  export const logout = () => {
+  localStorage.setItem("isLoggedIn", false)
+  auth.logout()
+}
