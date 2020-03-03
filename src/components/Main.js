@@ -5,7 +5,7 @@ import FetchDemo from "./RedditDisplayQuery.js"
 import pic01 from '../images/pic01.png'
 import pic02 from '../images/pic02.jpg'
 import pic03 from '../images/pic03.jpg'
-import { login, isAuthenticated, getProfile } from "../utils/auth"
+import { getTokens, login, isAuthenticated, getProfile } from "../utils/auth"
 
 
 class Main extends React.Component {
@@ -100,18 +100,16 @@ class Main extends React.Component {
             </p>
             <p>This may not work correctly on Netlify due to CORS issues when served from HTTPS. If so, please <a onClick={() => login()}>login</a> and use the authenticated queries.
             </p>
-
-            <p>
             <form className="pub-query-form">
             <input id="pub-query-text" type="text" placeholder="examples: awww, cars, historymemes, talesfromretail" value={this.state.subreddit} onChange={(e) => this.setState({ subreddit: e.target.value})}></input>
-            <button class="query-button" onClick={this.onSubmit}>Get hot</button>
-            <button class="query-button" onClick={this.onSubmitNew}>Get New</button>
-            <button class="query-button" onClick={this.onSubmitTop}>Get Top</button>
+            <button className="query-button" onClick={this.onSubmit}>Get hot</button>
+            <button className="query-button" onClick={this.onSubmitNew}>Get New</button>
+            <button className="query-button" onClick={this.onSubmitTop}>Get Top</button>
             </form>
             <div className='results-container'>
                 <FetchDemo ref="updatefeed"/>
             </div>
-          </p>
+
           <p>
 
           </p>
@@ -125,7 +123,7 @@ class Main extends React.Component {
           }`}
           style={{ display: 'none' }}
         >
-          <h2 className="major">{}</h2>
+          <h2 className="major"></h2>
           <span className="image main">
             <img src={pic03} alt="" />
           </span>
