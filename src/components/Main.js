@@ -68,10 +68,7 @@ class Main extends React.Component {
           </span>
           <h2>Frameworks</h2>
           <p>
-            Since the specs for this exersize were fairly basic and involved only AJAX requests to the Reddit API based on user input and no persistant data, I used <b>Gatsby</b> and <b>React</b> to generate static files that could then be built and hosted for free at a <b>Netlify</b> domain.  I used a <b>Gatsby template</b> from html5up.net to generate basic pages and styling, as well as <b>axios</b> to help simplify the AJAX requests and <b>webpack</b> for development and building.  Additionally, I used <b>Auth0</b> to verify users, which allowed me to access the <b>OAuth2</b> endpoints of the API, used for more interesting requests.
-          </p>
-          <h2>Design</h2>
-          <p>
+            Since the specs for this exersize were fairly basic and involved only AJAX requests to the Reddit API based on user input and no persistant data, I used <b>Gatsby</b> and <b>React</b> to generate static files that could then be built and hosted for free at a <b>Netlify</b> domain.  I used a <b>Gatsby template</b> from html5up.net to generate basic pages and styling, as well as the <b>axios</b> plugin to help simplify the AJAX requests, and <b>webpack</b> (as part of Gatsby) for development and building.  Additionally, I intended to use <b>Auth0</b> to verify users, which would allow me to access the <b>OAuth2</b> endpoints of the API for more interesting requests, but I've run into some issues exchanging my keys for an authorization token and haven't had time to investigate.
           </p>
           <h2>Local Deployment</h2>
           <h3>Requires Gatsby</h3>
@@ -83,7 +80,11 @@ class Main extends React.Component {
           <code>npm install</code>
           <p>...and run the Gatsby development server</p>
           <code>gatsby develop</code>
-          <p>The authentication features of the site may/may not work locally due to the redirects designated in Auth0</p>
+          <p>The authentication features of the site may/may not work locally due to the authorized callback URLs designated in Auth0</p>
+          <h2>Design</h2>
+          <p>
+          As a <b>React</b> application, this single page application is broken into a handful of componenents prior to being generated into static HTML/CSS/JS files, the most interesting of which are the <code>RedditDisplayQuery</code> and <code>RedditTile</code> components.  After a user inputs text into the Public Queries search box and selects one of the submission buttons, both the search parameters and the type of request are passed to the <code>RedditDisplayQuery</code> component, which performs the AJAX request and holds the result within its own state.  To render the result tiles, it creates a <code>RedditTile</code> for each "tile" the the corresponding json result parameters, which in turn sorts out the most interesting information and constructs an HTML template to display it.  The OAuth Queries tab was intended to return user-specific query results, but I haven't been able to figure out how to get <b>Auth0</b> to return the correct token to my callback URL.  I knew it would be a little easier to roll my own OAuth login, but I wanted to use <b>Auth0</b> to store my UserID and Secret somewhere not on a static site.
+          </p>
           {close}
         </article>
 
@@ -98,7 +99,7 @@ class Main extends React.Component {
           <p>
             Enter a subreddit name to retrieve the current top content.
             </p>
-            <p>This may not work correctly on Netlify due to CORS issues when served from HTTPS. If so, please <a onClick={() => login()}>login</a> and use the authenticated queries.
+            <p>This may not work correctly on Netlify due to CORS issues when served from an HTTPS domain. If so, please <a onClick={() => login()}>login</a> and use the authenticated queries.
             </p>
             <form className="pub-query-form">
             <input id="pub-query-text" type="text" placeholder="examples: awww, cars, historymemes, talesfromretail" value={this.state.subreddit} onChange={(e) => this.setState({ subreddit: e.target.value})}></input>
@@ -109,9 +110,7 @@ class Main extends React.Component {
             <div className='results-container'>
                 <FetchDemo ref="updatefeed"/>
             </div>
-
           <p>
-
           </p>
           {close}
         </article>

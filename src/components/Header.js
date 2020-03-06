@@ -48,9 +48,9 @@ const Header = props => (
         </li>
         <li>
           <button
-            onClick={() => login()}
-          >
-            Login
+            // onClick={() => login()}
+          ><a href="https://www.reddit.com/api/v1/authorize?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fcallback&scope=identity%2Cread%2Csubmit%2Cmysubreddits%2Cvote%2Clivemanage&state=tbNbGotjeMyEvKz_4hJUGB9XmfrSDKaa&client_id=hfpVQZRgLeSsuw">
+            Login</a>
           </button>
         </li>
       </ul>
